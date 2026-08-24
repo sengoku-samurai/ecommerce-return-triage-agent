@@ -3,6 +3,71 @@
   "nodes": [
     {
       "parameters": {
+        "content": "## Triage return requests from Shopify with an AI agent\n\n### Who's it for\nE-commerce teams (especially on Shopify) who want an AI agent to pre-screen return requests against a written policy — without letting the AI act blindly when something downstream goes wrong.\n\n### How it works\nA webhook receives a return request (order number, customer email, reason, description). An AI agent (Groq, structured output) evaluates it against a return policy defined in its system prompt and returns a decision (approve/deny/escalate), a confidence score, reasoning, and any concerns.\n\n- If the decision is `escalate` or confidence is below 70, the full reasoning is posted to Slack for a human to review before anything happens.\n- If confidence is high, the workflow calls the Shopify Admin API to act on the decision for real.\n- If that call fails, the Slack failure alert still carries the AI's original reasoning next to the actual error.\n\n### How to set up\n1. Import the workflow.\n2. Connect your Groq, Slack, and Shopify Admin API credentials (each is marked with a placeholder).\n3. Replace `returns-triage` with your Slack channel and `YOUR_STORE` with your Shopify store domain.\n4. Adjust the return policy text inside the AI Agent's system message to match your own rules.\n\n### Requirements\n- n8n (self-hosted or Cloud)\n- Groq API key (free tier works)\n- Slack workspace with a bot token\n- Shopify Admin API access token\n\n### How to customize\nSwap Groq for any other chat model node, add more policy rules to the system prompt, or extend the Shopify call to fetch order details before deciding.",
+        "height": 780,
+        "width": 640,
+        "color": 1
+      },
+      "id": "a1a1a1a1-1111-4111-8111-111111111101",
+      "name": "Sticky Note - Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-40, -720]
+    },
+    {
+      "parameters": {
+        "content": "### 1. Request comes in\nWebhook receives order number, customer email, reason, and description.",
+        "height": 160,
+        "width": 260,
+        "color": 2
+      },
+      "id": "a1a1a1a1-1111-4111-8111-111111111102",
+      "name": "Sticky Note - Step 1",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-40, -60]
+    },
+    {
+      "parameters": {
+        "content": "### 2. AI evaluates\nThe Groq-backed agent judges the request against the return policy in its system prompt and returns decision + confidence + reasoning.",
+        "height": 180,
+        "width": 300,
+        "color": 2
+      },
+      "id": "a1a1a1a1-1111-4111-8111-111111111103",
+      "name": "Sticky Note - Step 2",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [180, 500]
+    },
+    {
+      "parameters": {
+        "content": "### 3. Low confidence → human\n`escalate` or confidence < 70 routes to Slack for human review before any external action.",
+        "height": 160,
+        "width": 300,
+        "color": 2
+      },
+      "id": "a1a1a1a1-1111-4111-8111-111111111104",
+      "name": "Sticky Note - Step 3",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [740, -110]
+    },
+    {
+      "parameters": {
+        "content": "### 4. High confidence → real action\nCalls the Shopify Admin API for real. On failure, the AI's original reasoning still rides along in the Slack alert.",
+        "height": 180,
+        "width": 320,
+        "color": 2
+      },
+      "id": "a1a1a1a1-1111-4111-8111-111111111105",
+      "name": "Sticky Note - Step 4",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [980, 440]
+    },
+    {
+      "parameters": {
         "httpMethod": "POST",
         "path": "return-request",
         "responseMode": "responseNode",
