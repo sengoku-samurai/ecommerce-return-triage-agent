@@ -109,3 +109,6 @@ accounts — they're intentionally left as placeholders in the file.
 
 Built by [Sengoku Automation](https://github.com/sengoku-samurai) — n8n + AI workflow
 automation.
+
+
+Open an issue or drop a comment here if you want to talk about a return/refund flow for your own store — I check both.
