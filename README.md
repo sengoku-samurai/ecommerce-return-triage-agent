@@ -4,6 +4,8 @@ An n8n workflow that reads an incoming return request, has an AI agent judge it 
 a written return policy, and — this is the part most demos skip — **shows you exactly
 what happens when the automation hits a wall.**
 
+Try it yourself: also published as a free n8n Creator Hub template — same workflow, one-click import, no need to copy-paste JSON: https://creators.n8n.io/workflows/18663
+
 ## What happens on run #2
 
 Run #1 is always the happy path. Here's what actually happened on a real run against a
@@ -95,6 +97,8 @@ Slack: human review           Shopify API call (real action)
 from File**, then reconnect the three credentials (Groq, Slack, Shopify) to your own
 accounts — they're intentionally left as placeholders in the file.
 
+Or grab it from the n8n Creator Hub template for a one-click import: https://creators.n8n.io/workflows/18663
+
 ## What I'd build next
 
 - A small persistence layer (e.g. Postgres or a Google Sheet) that logs every AI
@@ -112,3 +116,5 @@ automation.
 
 
 Open an issue or drop a comment here if you want to talk about a return/refund flow for your own store — I check both.
+
+Also discussed on the n8n community forum: https://community.n8n.io/t/for-hire-an-ai-agent-that-keeps-its-reasoning-even-when-the-api-call-it-triggers-doesnt/309236
